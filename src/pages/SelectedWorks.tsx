@@ -9,7 +9,7 @@ const projects = [
     title: "Aegis — Payment Operations Intelligence Platform",
     stack: "Python / FastAPI / Supabase / Redis / Docker / Groq",
     description: "A Payment Operations Intelligence Platform that reconstructs the complete lifecycle of every payment across Core Banking, RAAST, Wallet APIs, and Settlement Files, featuring AI-assisted incident summaries.",
-    links: { live: "https://github.com/FaizanAhmeddd27/sentinel-backend", code: "https://github.com/FaizanAhmeddd27/sentinel-backend" },
+    links: { live: "https://github.com/FaizanAhmeddd27/Sentinel", code: "https://github.com/FaizanAhmeddd27/Sentinel" },
     image: "/aegis.jpg",
     cta: "View on Github"
   },
