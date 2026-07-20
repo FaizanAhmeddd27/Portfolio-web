@@ -1,0 +1,40 @@
+.star-border-container {
+  display: inline-block;
+  position: relative;
+  border-radius: 60px;
+  overflow: hidden;
+  padding: 2px; /* This defines the thickness of the border */
+}
+
+/* The "Star" Glow Container */
+.border-gradient-full {
+  position: absolute;
+  /* Make the glow much larger than the card to ensure corners are covered */
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  animation: star-rotate linear infinite;
+  /* Adjust blur for a softer or sharper 'star' trail */
+  filter: blur(8px);
+}
+
+.inner-content {
+  position: relative;
+  background: #000;
+  border-radius: 58px; /* Slightly less than container to fit inside */
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 360-degree rotation to hit all sides */
+@keyframes star-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,221 @@
+/* Import Inter Font for Swiss Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --hue: 27;
+  --sat: 69%;
+  --white: #ffffff;
+  --black: #000000;
+  
+  /* Swiss Design Palette: High Contrast */
+  --purple-primary: rgba(132, 0, 255, 1);
+  --purple-glow: rgba(132, 0, 255, 0.2);
+  --border-color: #ffffff;
+  --background-dark: #000000;
+  
+  /* Swiss Typography Settings */
+  --font-stack: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  
+  color-scheme: light dark;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%; /* Changed from height to min-height to allow scrolling */
+  background-color: var(--black);
+  overflow-x: hidden; /* Only lock horizontal scroll */
+  /* overflow: hidden; <--- REMOVED THIS to enable vertical scrolling */
+}
+
+.card-grid {
+  display: grid;
+  gap: 1em;
+  padding: 2em;
+  
+  /* Full Viewport / Single Window Settings */
+  width: 100vw; 
+  min-height: 100vh; /* Changed from height to min-height */
+  max-width: 100%; 
+  box-sizing: border-box;
+  
+  /* Center the content visually in the window when space allows */
+  align-content: center;
+  justify-content: center;
+  
+  font-family: var(--font-stack);
+  /* Adjust base font size based on viewport */
+  font-size: clamp(0.8rem, 1vw, 1.1rem);
+  background-color: var(--black);
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  
+  /* Make cards stretch to fill the grid cells defined by parent */
+  height: 100%; 
+  width: 100%;
+  padding: 1.5em;
+  
+  border-radius: 0px; /* Swiss design sharp corners */
+  border: 1px solid var(--border-color);
+  background: var(--background-dark);
+  
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Snappy "Swiss" easing */
+  z-index: 1;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+}
+
+/* Hover: Invert Colors (High Contrast) */
+.magic-bento-card:hover {
+  transform: translateY(-2px);
+  background: var(--white);
+  border-color: var(--black);
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+}
+
+.magic-bento-card:hover * {
+  color: var(--black) !important;
+}
+
+/* Typography Hierarchy */
+
+.magic-bento-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1em;
+}
+
+.magic-bento-card__label {
+  font-family: var(--font-stack);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* Swiss style tracking */
+  font-weight: 600;
+  opacity: 0.8;
+  color: var(--white);
+}
+
+.magic-bento-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.25em;
+  color: var(--white);
+}
+
+/* Big Numbers (Counters) */
+.magic-bento-card__counter {
+  font-family: var(--font-stack);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em; /* Tight spacing for big type */
+  font-feature-settings: "tnum" on, "cv05" on; /* Tabular numbers for stability */
+  margin-bottom: 0.1em;
+}
+
+.magic-bento-card__title {
+  font-family: var(--font-stack);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.magic-bento-card__description {
+  font-family: var(--font-stack);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 400;
+  opacity: 0.7;
+  max-width: 90%;
+}
+
+/* Responsive Logic */
+
+/* Mobile: Stack vertically and allow scroll */
+@media (max-width: 599px) {
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+    height: auto; 
+    min-height: 100vh;
+    padding: 1em;
+    gap: 1em;
+    justify-content: flex-start; /* Start from top on mobile */
+  }
+  
+  .magic-bento-card { 
+    min-height: 200px;
+    height: auto; 
+  }
+}
+
+/* Tablet: 2 Columns */
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr); 
+  }
+}
+
+/* Desktop: 4 Columns, Fixed Layout */
+@media (min-width: 1024px) {
+  .card-grid {
+    /* 4 Columns, specific row heights to fit screen */
+    grid-template-columns: repeat(4, 1fr);
+    /* minmax(0, 1fr) ensures rows don't blow out but share space */
+    grid-template-rows: repeat(3, minmax(0, 1fr)); 
+  }
+
+  /* Bento Layout Placements */
+  .magic-bento-card:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+  .magic-bento-card:nth-child(2) { grid-area: 1 / 2 / 2 / 3; }
+  
+  /* The Big Box (Projects) */
+  .magic-bento-card:nth-child(3) { 
+    grid-column: span 2; 
+    grid-row: span 2; 
+  }
+
+  .magic-bento-card:nth-child(4) { 
+    grid-column: 1 / span 2; 
+    grid-row: 2 / span 3; /* Tall card on left */
+  }
+  
+  .magic-bento-card:nth-child(5) { grid-area: 3 / 3 / 4 / 4; }
+  .magic-bento-card:nth-child(6) { grid-area: 3 / 4 / 4 / 5; }
+}
+
+/* Border Glow (Adjusted for white borders) */
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 2;
+}

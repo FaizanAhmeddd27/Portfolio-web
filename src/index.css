@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Editorial Minimalist Design System
+   Inspired by: Bold serif typography, pure white backgrounds, generous whitespace
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    /* Core palette - Pure white and deep black */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Primary - Deep black for bold statements */
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Subtle gray tones */
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 10%;
+
+    /* Muted - For subtle text */
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Accent - Warm off-white */
+    --accent: 40 15% 97%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - Very subtle */
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+    --ring: 0 0% 5%;
+
+    --radius: 0rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 8%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 0% 8%;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Spacing */
+    --section-padding: 8rem;
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 85%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 0% 90%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 0% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Removed scroll-behavior: smooth — Lenis handles this now */
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    background-color: theme('colors.black');
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer components {
+
+  /* Editorial link with underline animation */
+  .editorial-link {
+    @apply relative inline-block text-foreground uppercase tracking-widest text-sm font-medium;
+  }
+
+  .editorial-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-foreground;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .editorial-link:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  /* Large serif heading */
+  .heading-editorial {
+    font-family: var(--font-serif);
+    @apply text-foreground leading-tight tracking-tight;
+  }
+
+  /* Italic emphasis - key design element */
+  .italic-emphasis {
+    font-family: var(--font-serif);
+    @apply italic;
+  }
+}
