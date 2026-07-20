@@ -183,7 +183,7 @@ const Index = () => {
         <AvailabilityBadge />
         <SocialStrip />
         <SpinningCTA />
-        <div className="hidden lg:block"><SplashCursor /></div>
+        <SplashCursor />
 
         {/* Mobile Midpoint Buffer: 80px total height from top to clear hamburger (Hamburger at 24px + 56px height) */}
         <div className="h-[32px] w-full md:hidden" /> {/* py-12 (48px) + 32px = 80px */}
